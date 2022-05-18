@@ -8,11 +8,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Material App',
+      title: 'MATERIAL MASTER BRO',
       initialRoute: "Home",
-      routes: {
-        "Home" :(BuildContext context) => HomePage() 
-      },
+      routes: {"Home": (BuildContext context) => HomePage()},
     );
   }
 }

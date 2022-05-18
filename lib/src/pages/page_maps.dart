@@ -12,7 +12,7 @@ class _PageMapasState extends State<PageMapas> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Center(
-      child: Text("Hello Maps"),
+      child: Text("HOLA SOY LUK GUTIERREZ"),
     ));
   }
 }
