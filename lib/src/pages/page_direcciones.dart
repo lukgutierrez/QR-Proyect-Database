@@ -10,10 +10,7 @@ class PageDirection extends StatefulWidget {
 class _PageDirectionState extends State<PageDirection> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Center(
-      child: Text("Hello Luciano Gutierrez Experencie"),
-    ));
+    return Scaffold(body: Center());
   }
 }
 

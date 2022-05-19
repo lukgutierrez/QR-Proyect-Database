@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:qr_proyectobasedatos/src/pages/page_direcciones.dart';
 import 'package:qr_proyectobasedatos/src/pages/page_maps.dart';
+import 'package:qrscan/qrscan.dart' as scanner;
 
 class HomePage extends StatefulWidget {
   @override
@@ -15,7 +16,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Center(child: Text("APP QR DATABASE")),
-        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.ac_unit))],
+        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.add_a_photo))],
       ),
       body: _pagecentral(currentIndexx),
       bottomNavigationBar: BottomNavigationBar(
@@ -36,9 +37,19 @@ class _HomePageState extends State<HomePage> {
       floatingActionButtonLocation:
           FloatingActionButtonLocation.miniCenterFloat,
       floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.accessibility_new), onPressed: () {}),
+          child: Icon(Icons.accessibility_new),
+          onPressed: () {
+            _QrScanner();
+          }),
     );
   }
+}
+
+_QrScanner() async {
+  String FutureString = "";
+  try {
+    FutureString = await scanner.scan();
+  } catch (e) {}
 }
 
 Widget _pagecentral(int paginaactual) {
