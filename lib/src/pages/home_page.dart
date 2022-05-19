@@ -8,12 +8,36 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int currentIndexx = 0;
+  int currentIndexx = 1;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: _pagecentral(currentIndexx),
-        bottomNavigationBar: _botomnavigationbar());
+      appBar: AppBar(
+        title: Center(child: Text("APP QR DATABASE")),
+        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.ac_unit))],
+      ),
+      body: _pagecentral(currentIndexx),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: currentIndexx,
+        onTap: (index) {
+          setState(() {
+            currentIndexx = index;
+          });
+        },
+        items: [
+          BottomNavigationBarItem(
+              icon: Icon(Icons.access_alarms_outlined), label: "Mapas"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.account_balance_wallet_outlined),
+              label: "Direcciones"),
+        ],
+      ),
+      floatingActionButtonLocation:
+          FloatingActionButtonLocation.miniCenterFloat,
+      floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.accessibility_new), onPressed: () {}),
+    );
   }
 }
 
@@ -26,18 +50,4 @@ Widget _pagecentral(int paginaactual) {
     default:
       return PageMapas();
   }
-}
-
-Widget _botomnavigationbar() {
-  return BottomNavigationBar(
-    currentIndex: currentIndexx,
-    onTap: (index) {},
-    items: [
-      BottomNavigationBarItem(
-          icon: Icon(Icons.access_alarms_outlined), label: "Mapas"),
-      BottomNavigationBarItem(
-          icon: Icon(Icons.account_balance_wallet_outlined),
-          label: "Direcciones"),
-    ],
-  );
 }

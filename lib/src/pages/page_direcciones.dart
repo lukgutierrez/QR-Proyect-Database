@@ -12,7 +12,7 @@ class _PageDirectionState extends State<PageDirection> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Center(
-      child: Text("Hola soy Luk gutierrez"),
+      child: Text("Hello Luciano Gutierrez Experencie"),
     ));
   }
 }

@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
       title: 'MATERIAL MASTER BRO',
       initialRoute: "Home",
       routes: {"Home": (BuildContext context) => HomePage()},
+      theme: ThemeData(primarySwatch: Colors.green),
     );
   }
 }
