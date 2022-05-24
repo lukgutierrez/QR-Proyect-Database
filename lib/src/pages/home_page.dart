@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:qr_proyectobasedatos/src/pages/page_direcciones.dart';
 import 'package:qr_proyectobasedatos/src/pages/page_maps.dart';
@@ -37,7 +39,7 @@ class _HomePageState extends State<HomePage> {
       floatingActionButtonLocation:
           FloatingActionButtonLocation.miniCenterFloat,
       floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.accessibility_new),
+          child: Icon(Icons.qr_code_2),
           onPressed: () {
             _QrScanner();
           }),
@@ -46,10 +48,12 @@ class _HomePageState extends State<HomePage> {
 }
 
 _QrScanner() async {
-  String FutureString = "";
+  String? FutureString = "";
   try {
     FutureString = await scanner.scan();
-  } catch (e) {}
+  } catch (e) {
+    FutureString = e.toString();
+  }
 }
 
 Widget _pagecentral(int paginaactual) {
