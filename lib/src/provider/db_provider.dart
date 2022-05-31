@@ -45,7 +45,8 @@ class DBProvider {
 
   nuevoScan(ModelQr nuevoScan) async {
     final db = await database;
-    final res = await db!.insert('Scans', nuevoScan.toJson());
+    final res = await db!.insert('Scans', nuevoScan.toJson(),
+        conflictAlgorithm: ConflictAlgorithm.replace);
     return res;
   }
 

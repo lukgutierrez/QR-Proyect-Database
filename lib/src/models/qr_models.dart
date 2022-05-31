@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 class ModelQr {
   ModelQr({
     required this.id,

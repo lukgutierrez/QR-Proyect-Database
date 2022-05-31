@@ -1,8 +1,10 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:qr_proyectobasedatos/src/models/qr_models.dart';
 import 'package:qr_proyectobasedatos/src/pages/page_direcciones.dart';
 import 'package:qr_proyectobasedatos/src/pages/page_maps.dart';
+import 'package:qr_proyectobasedatos/src/provider/db_provider.dart';
 import 'package:qrscan/qrscan.dart' as scanner;
 
 class HomePage extends StatefulWidget {
@@ -48,11 +50,17 @@ class _HomePageState extends State<HomePage> {
 }
 
 _QrScanner() async {
-  String? FutureString = "";
-  try {
-    FutureString = await scanner.scan();
-  } catch (e) {
-    FutureString = e.toString();
+  String? FutureString = "https://www.google.com.mx/";
+//   try {
+//     FutureString = await scanner.scan();
+//   } catch (e) {
+//     FutureString = e.toString();
+//   }
+// }
+
+  if (FutureString != null) {
+    final scan = ModelQr(valor: FutureString, id: 3, tipo: FutureString);
+    DBProvider.db.nuevoScan(scan);
   }
 }
 
