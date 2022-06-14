@@ -1,6 +1,5 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
+import 'package:qr_proyectobasedatos/src/bloc/patron_bloc.dart';
 import 'package:qr_proyectobasedatos/src/models/qr_models.dart';
 import 'package:qr_proyectobasedatos/src/pages/page_direcciones.dart';
 import 'package:qr_proyectobasedatos/src/pages/page_maps.dart';
@@ -13,8 +12,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final patronBloc = new PatronBloc();
   int currentIndexx = 1;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,24 +42,17 @@ class _HomePageState extends State<HomePage> {
       floatingActionButton: FloatingActionButton(
           child: Icon(Icons.qr_code_2),
           onPressed: () {
-            _QrScanner();
+            QRscanner();
           }),
     );
   }
-}
 
-_QrScanner() async {
-  String? FutureString = "https://www.google.com.mx/";
-//   try {
-//     FutureString = await scanner.scan();
-//   } catch (e) {
-//     FutureString = e.toString();
-//   }
-// }
-
-  if (FutureString != null) {
-    final scan = ModelQr(valor: FutureString, id: 3, tipo: FutureString);
-    DBProvider.db.nuevoScan(scan);
+  QRscanner() async {
+    String? FutureString = "https://www.google.com.mx/";
+    if (FutureString != null) {
+      final scan = ModelQr(valor: FutureString, id: 1, tipo: FutureString);
+      patronBloc.agregarScans(scan);
+    }
   }
 }
 
