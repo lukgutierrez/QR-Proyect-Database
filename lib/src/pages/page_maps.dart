@@ -1,42 +1,42 @@
 import 'package:flutter/material.dart';
-import 'package:qr_proyectobasedatos/src/provider/db_provider.dart';
-import 'package:qrscan/qrscan.dart';
+import 'package:qr_proyectobasedatos/src/bloc/patron_bloc.dart';
 
 class PageMapas extends StatefulWidget {
-  PageMapas({Key? key}) : super(key: key);
-
   @override
   State<PageMapas> createState() => _PageMapasState();
 }
 
 class _PageMapasState extends State<PageMapas> {
+  final patronBloc = PatronBloc();
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: DBProvider.db.getTodosScans(),
+    return StreamBuilder(
+      stream: patronBloc.scansStream,
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         if (!snapshot.hasData) {
           return Center(
-            child: CircularProgressIndicator(),
+            child: Text("Cargando....."),
           );
         }
         final scans = snapshot.data;
-        if (scans.length == 0) {
+        //PROBLEMA CON LENGT Y FUTURE BUILDER
+        if (scans == 0) {
           return Center(
-            child: CircularProgressIndicator(),
+            child: Text("Defoult Information"),
           );
         }
 
         return ListView.builder(
-            itemCount: scans.length,
+            //AQUI TAMBIEN INFLUYE EL PROBLEMA
+            itemCount: 3,
             itemBuilder: (context, i) => Dismissible(
                 key: UniqueKey(),
                 background: Container(
                   color: Colors.red,
                 ),
-                onDismissed: (direction) =>
-                    DBProvider.db.deleteScan(scans[i].id),
+                onDismissed: (direction) => patronBloc.borrarScans(scans[i].id),
                 child: ListTile(
+                  //AQUI TAMBIEN
                   title: Text(scans[i].valor),
                   leading: Icon(Icons.abc_sharp),
                   trailing: Icon(Icons.navigate_next_outlined),
