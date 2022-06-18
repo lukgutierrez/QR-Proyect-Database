@@ -15,8 +15,8 @@ class PatronBloc {
     obtenerScans();
   }
 
-  final _scansController = StreamController.broadcast();
-  get scansStream => _scansController.stream;
+  final _scansController = StreamController<List<ModelQr>>.broadcast();
+  Stream<List<ModelQr>> get scansStream => _scansController.stream;
   dispose() {
     _scansController.close();
   }
@@ -27,7 +27,7 @@ class PatronBloc {
   }
 
   obtenerScans() async {
-    _scansController.sink.add(DBProvider.db.getTodosScans());
+    _scansController.sink.add(await DBProvider.db.getTodosScans());
   }
 
   borrarScans(int id) async {

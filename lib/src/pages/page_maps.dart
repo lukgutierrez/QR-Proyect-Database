@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qr_proyectobasedatos/src/bloc/patron_bloc.dart';
+import 'package:qr_proyectobasedatos/src/models/qr_models.dart';
 
 class PageMapas extends StatefulWidget {
   @override
@@ -10,7 +11,7 @@ class _PageMapasState extends State<PageMapas> {
   final patronBloc = PatronBloc();
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
+    return StreamBuilder<List<ModelQr>>(
       stream: patronBloc.scansStream,
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         if (!snapshot.hasData) {
@@ -20,7 +21,7 @@ class _PageMapasState extends State<PageMapas> {
         }
         final scans = snapshot.data;
         //PROBLEMA CON LENGT Y FUTURE BUILDER
-        if (scans == 0) {
+        if (scans.length == 0) {
           return Center(
             child: Text("Defoult Information"),
           );
@@ -28,7 +29,7 @@ class _PageMapasState extends State<PageMapas> {
 
         return ListView.builder(
             //AQUI TAMBIEN INFLUYE EL PROBLEMA
-            itemCount: 3,
+            itemCount: scans.length,
             itemBuilder: (context, i) => Dismissible(
                 key: UniqueKey(),
                 background: Container(
@@ -37,7 +38,7 @@ class _PageMapasState extends State<PageMapas> {
                 onDismissed: (direction) => patronBloc.borrarScans(scans[i].id),
                 child: ListTile(
                   //AQUI TAMBIEN
-                  title: Text(scans[i].valor),
+                  title: Text("fdsokpok"),
                   leading: Icon(Icons.abc_sharp),
                   trailing: Icon(Icons.navigate_next_outlined),
                 )));
