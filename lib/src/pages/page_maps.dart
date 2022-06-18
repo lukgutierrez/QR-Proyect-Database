@@ -38,7 +38,7 @@ class _PageMapasState extends State<PageMapas> {
                 onDismissed: (direction) => patronBloc.borrarScans(scans[i].id),
                 child: ListTile(
                   //AQUI TAMBIEN
-                  title: Text("fdsokpok"),
+                  title: Text(scans[i].valor),
                   leading: Icon(Icons.abc_sharp),
                   trailing: Icon(Icons.navigate_next_outlined),
                 )));

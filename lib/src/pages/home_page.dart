@@ -19,7 +19,9 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Center(child: Text("APP QR DATABASE")),
-        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.add_a_photo))],
+        actions: [IconButton(
+          onPressed: patronBloc.borrarScansTodos
+          , icon: Icon(Icons.add_a_photo))],
       ),
       body: _pagecentral(currentIndexx),
       bottomNavigationBar: BottomNavigationBar(
@@ -50,7 +52,7 @@ class _HomePageState extends State<HomePage> {
   QRscanner() async {
     String? FutureString = "https://www.google.com.mx/";
     if (FutureString != null) {
-      final scan = ModelQr(valor: FutureString, id: 1, tipo: FutureString);
+      final scan = ModelQr(valor: FutureString, id: 5, tipo: FutureString);
       patronBloc.agregarScans(scan);
     }
   }
