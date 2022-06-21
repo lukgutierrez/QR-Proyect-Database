@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:qr_proyectobasedatos/src/bloc/patron_bloc.dart';
 import 'package:qr_proyectobasedatos/src/models/qr_models.dart';
+import 'package:qr_proyectobasedatos/src/utils/utils.dart';
 
 class PageMapas extends StatefulWidget {
   @override
@@ -41,6 +42,7 @@ class _PageMapasState extends State<PageMapas> {
                   title: Text(scans[i].valor),
                   leading: Icon(Icons.abc_sharp),
                   trailing: Icon(Icons.navigate_next_outlined),
+                  onTap: () => AgregarScans(scans[i]),
                 )));
       },
     );

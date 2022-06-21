@@ -4,7 +4,9 @@ import 'package:qr_proyectobasedatos/src/models/qr_models.dart';
 import 'package:qr_proyectobasedatos/src/pages/page_direcciones.dart';
 import 'package:qr_proyectobasedatos/src/pages/page_maps.dart';
 import 'package:qr_proyectobasedatos/src/provider/db_provider.dart';
+import 'package:qr_proyectobasedatos/src/utils/utils.dart';
 import 'package:qrscan/qrscan.dart' as scanner;
+import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -19,9 +21,11 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Center(child: Text("APP QR DATABASE")),
-        actions: [IconButton(
-          onPressed: patronBloc.borrarScansTodos
-          , icon: Icon(Icons.add_a_photo))],
+        actions: [
+          IconButton(
+              onPressed: patronBloc.borrarScansTodos,
+              icon: Icon(Icons.add_a_photo))
+        ],
       ),
       body: _pagecentral(currentIndexx),
       bottomNavigationBar: BottomNavigationBar(
@@ -50,10 +54,16 @@ class _HomePageState extends State<HomePage> {
   }
 
   QRscanner() async {
-    String? FutureString = "https://www.google.com.mx/";
+    String? FutureString;
+    try {
+      FutureString = await scanner.scan();
+    } catch (e) {
+      FutureString = e.toString();
+    }
     if (FutureString != null) {
-      final scan = ModelQr(valor: FutureString, id: 5, tipo: FutureString);
+      final scan = ModelQr(valor: FutureString, id: 1, tipo: FutureString);
       patronBloc.agregarScans(scan);
+      AgregarScans(scan);
     }
   }
 }
