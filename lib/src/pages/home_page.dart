@@ -18,7 +18,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(child: Text("APP QR DATABASE")),
+        title: Center(child: Text("QR")),
         actions: [
           IconButton(
               onPressed: patronBloc.borrarScansTodos,
@@ -35,10 +35,17 @@ class _HomePageState extends State<HomePage> {
         },
         items: [
           BottomNavigationBarItem(
-              icon: Icon(Icons.access_alarms_outlined), label: "Mapas"),
+              icon: Icon(
+                Icons.access_alarms_outlined,
+                color: Colors.white,
+              ),
+              label: ""),
           BottomNavigationBarItem(
-              icon: Icon(Icons.account_balance_wallet_outlined),
-              label: "Direcciones"),
+              icon: Icon(
+                Icons.account_balance_wallet_outlined,
+                color: Colors.white,
+              ),
+              label: ""),
         ],
       ),
       floatingActionButtonLocation:
