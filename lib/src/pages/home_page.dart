@@ -3,10 +3,8 @@ import 'package:qr_proyectobasedatos/src/bloc/patron_bloc.dart';
 import 'package:qr_proyectobasedatos/src/models/qr_models.dart';
 import 'package:qr_proyectobasedatos/src/pages/page_direcciones.dart';
 import 'package:qr_proyectobasedatos/src/pages/page_maps.dart';
-import 'package:qr_proyectobasedatos/src/provider/db_provider.dart';
 import 'package:qr_proyectobasedatos/src/utils/utils.dart';
 import 'package:qrscan/qrscan.dart' as scanner;
-import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatefulWidget {
   @override
